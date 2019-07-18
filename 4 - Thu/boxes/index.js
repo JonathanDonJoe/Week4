@@ -36,12 +36,22 @@ function moveBox(event) {
     event.target.style.top = randomy + "px"
 }
 
-function createBox(event, x, y) {
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+      color += letters[Math.floor(Math.random() * 16)];
+    }
+    return color;
+  }  
+
+function createBox(event, x, y, makeBoxColor) {
     const element = document.createElement("div");
     element.classList.add("box");
     element.style.top = y + "px";
     element.style.left = x + "px";
     boxContainer.appendChild(element);
+    element.style.backgroundColor = makeBoxColor;
     
     //Drop Down Color Selector:
     // element.style.backgroundColor = dropDownSelect.options[dropDownSelect.selectedIndex].value;
@@ -57,12 +67,12 @@ function makeBox(event) {
     if (xCoord.value === "" && yCoord.value === "") {
         var randomx = Math.random() * (+maxx - +minx) + +minx;
         var randomy = Math.random() * (+maxy - +miny) + +miny;    
-        createBox(event, randomx, randomy)
+        createBox(event, randomx, randomy, getRandomColor())
     } else if (xCoord.value <= maxx 
         && xCoord.value >= minx
         && yCoord.value <= maxy
         && yCoord.value >= miny){
-        createBox(event, xCoord.value, yCoord.value)
+        createBox(event, xCoord.value, yCoord.value, colorInputSelect.value)
     }  else {
         alert("COORDINATES OUT OF BOUNDS");
     }
