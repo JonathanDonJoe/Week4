@@ -1,4 +1,4 @@
-console.log('*********');
+// console.log('*********');
 const boxContainer = document.querySelector('.box-container');
 const boxes = document.querySelectorAll('.box');
 /**********************************
@@ -21,6 +21,10 @@ const colorInputSelect = document.getElementById("box-color-input");
 
 // console.log(boxContainer.style)
 
+function delBox(event) {
+    event.target.parentNode.removeChild(event.target)
+}
+
 function makeBox(event) {
 
     if (xCoord.value <= 550 
@@ -36,15 +40,22 @@ function makeBox(event) {
         //Drop Down Color Selector:
         // element.style.backgroundColor = dropDownSelect.options[dropDownSelect.selectedIndex].value;
 
-        console.log(colorInputSelect.value);
-        element.style.backgroundColor = colorInputSelect.value;
+        //Text Input Color Selector:
+        // element.style.backgroundColor = colorInputSelect.value;
+
+        element.addEventListener('click',delBox)
+
     } else {
         alert("COORDINATES OUT OF BOUNDS");
     }
 }
 
+
+
+
 button.addEventListener('click', makeBox);
 
+// boxes.forEach( box => box.addEventListener('click',delBox));
 
 
 
