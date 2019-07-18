@@ -18,6 +18,10 @@ const xCoord = document.getElementById("xaxis");
 const yCoord = document.getElementById("yaxis");
 const dropDownSelect = document.getElementById("box-color");
 const colorInputSelect = document.getElementById("box-color-input");
+var minx = 0;
+var maxx = 548;
+var miny = 0;
+var maxy = 348;
 
 
 function delBox(event) {
@@ -25,43 +29,41 @@ function delBox(event) {
 }
 
 function moveBox(event) {
-    var minx = 0;
-    var maxx = 548;
-    var miny = 0;
-    var maxy = 348;
     var randomx = Math.random() * (+maxx - +minx) + +minx;
     var randomy = Math.random() * (+maxy - +miny) + +miny;
-    
-    console.log(randomx)
-    console.log(randomy)
 
     event.target.style.left = randomx + "px"
     event.target.style.top = randomy + "px"
+}
 
+function createBox(event, x, y) {
+    const element = document.createElement("div");
+    element.classList.add("box");
+    element.style.top = y + "px";
+    element.style.left = x + "px";
+    boxContainer.appendChild(element);
+    
+    //Drop Down Color Selector:
+    // element.style.backgroundColor = dropDownSelect.options[dropDownSelect.selectedIndex].value;
+    
+    //Text Input Color Selector:
+    // element.style.backgroundColor = colorInputSelect.value;
+    
+    element.addEventListener('click', delBox)
+    element.addEventListener('mouseover', moveBox)    
 }
 
 function makeBox(event) {
-
-    if (xCoord.value <= 548 
-        && xCoord.value >= 0
-        && yCoord.value <= 348
-        && yCoord.value >= 0){
-        const element = document.createElement("div");
-        element.classList.add("box");
-        element.style.top = yCoord.value + "px";
-        element.style.left = xCoord.value + "px";
-        boxContainer.appendChild(element);
-
-        //Drop Down Color Selector:
-        // element.style.backgroundColor = dropDownSelect.options[dropDownSelect.selectedIndex].value;
-
-        //Text Input Color Selector:
-        // element.style.backgroundColor = colorInputSelect.value;
-
-        element.addEventListener('click', delBox)
-        element.addEventListener('mouseover', moveBox)
-
-    } else {
+    if (xCoord.value === "" && yCoord.value === "") {
+        var randomx = Math.random() * (+maxx - +minx) + +minx;
+        var randomy = Math.random() * (+maxy - +miny) + +miny;    
+        createBox(event, randomx, randomy)
+    } else if (xCoord.value <= maxx 
+        && xCoord.value >= minx
+        && yCoord.value <= maxy
+        && yCoord.value >= miny){
+        createBox(event, xCoord.value, yCoord.value)
+    }  else {
         alert("COORDINATES OUT OF BOUNDS");
     }
 }
