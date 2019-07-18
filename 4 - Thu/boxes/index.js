@@ -45,6 +45,7 @@ function getRandomColor() {
     return color;
   }  
 
+
 function createBox(event, x, y, makeBoxColor) {
     const element = document.createElement("div");
     element.classList.add("box");
@@ -52,6 +53,8 @@ function createBox(event, x, y, makeBoxColor) {
     element.style.left = x + "px";
     boxContainer.appendChild(element);
     element.style.backgroundColor = makeBoxColor;
+    var randomZ = Math.random() * (+20 - +0) + +0;
+    element.style.zIndex = randomZ
     
     //Drop Down Color Selector:
     // element.style.backgroundColor = dropDownSelect.options[dropDownSelect.selectedIndex].value;
