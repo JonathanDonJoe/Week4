@@ -13,25 +13,32 @@ const boxes = document.querySelectorAll('.box');
  * Have fun!
  ***********************************/
 
-const xform = document.querySelector('.x-form');
-const yform = document.querySelector('.y-form');
-const button = document.querySelector('.button')
-const xCoord = document.getElementById("xaxis")
-const yCoord = document.getElementById("yaxis")
+const button = document.querySelector('.button');
+const xCoord = document.getElementById("xaxis");
+const yCoord = document.getElementById("yaxis");
 
+// console.log(boxContainer.style)
 
 function makeBox(event) {
-    const element = document.createElement("div");
-    element.classList.add("box");
-    // element.style.top = '100px';
-    // element.style.left = '200px';
-    element.style.top = yCoord.value + "px";
-    element.style.left = xCoord.value + "px";
-    boxContainer.appendChild(element);
-    // console.log(yCoord.value + " px");
-    // console.log(yform)
-    // console.log(xCoord.value)
-    // console.log(yCoord.value)
+
+    if (xCoord.value <= 550 
+        && xCoord.value >= 0
+        && yCoord.value <= 350
+        && yCoord.value >= 0){
+        const element = document.createElement("div");
+        element.classList.add("box");
+        // element.style.top = '100px';
+        // element.style.left = '200px';
+        element.style.top = yCoord.value + "px";
+        element.style.left = xCoord.value + "px";
+        boxContainer.appendChild(element);
+        // console.log(yCoord.value + " px");
+        // console.log(yform)
+        // console.log(xCoord.value)
+        // console.log(yCoord.value)
+    } else {
+        alert("COORDINATES OUT OF BOUNDS")
+    }
 }
 
 button.addEventListener('click', makeBox)
