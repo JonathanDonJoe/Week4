@@ -19,17 +19,32 @@ const yCoord = document.getElementById("yaxis");
 const dropDownSelect = document.getElementById("box-color");
 const colorInputSelect = document.getElementById("box-color-input");
 
-// console.log(boxContainer.style)
 
 function delBox(event) {
     event.target.parentNode.removeChild(event.target)
 }
 
+function moveBox(event) {
+    var minx = 0;
+    var maxx = 548;
+    var miny = 0;
+    var maxy = 348;
+    var randomx = Math.random() * (+maxx - +minx) + +minx;
+    var randomy = Math.random() * (+maxy - +miny) + +miny;
+    
+    console.log(randomx)
+    console.log(randomy)
+
+    event.target.style.left = randomx + "px"
+    event.target.style.top = randomy + "px"
+
+}
+
 function makeBox(event) {
 
-    if (xCoord.value <= 550 
+    if (xCoord.value <= 548 
         && xCoord.value >= 0
-        && yCoord.value <= 350
+        && yCoord.value <= 348
         && yCoord.value >= 0){
         const element = document.createElement("div");
         element.classList.add("box");
@@ -43,7 +58,8 @@ function makeBox(event) {
         //Text Input Color Selector:
         // element.style.backgroundColor = colorInputSelect.value;
 
-        element.addEventListener('click',delBox)
+        element.addEventListener('click', delBox)
+        element.addEventListener('mouseover', moveBox)
 
     } else {
         alert("COORDINATES OUT OF BOUNDS");
