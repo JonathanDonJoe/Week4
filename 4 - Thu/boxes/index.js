@@ -16,7 +16,8 @@ const boxes = document.querySelectorAll('.box');
 const button = document.querySelector('.button');
 const xCoord = document.getElementById("xaxis");
 const yCoord = document.getElementById("yaxis");
-const dropDownSelect = document.getElementById("box-color")
+const dropDownSelect = document.getElementById("box-color");
+const colorInputSelect = document.getElementById("box-color-input");
 
 // console.log(boxContainer.style)
 
@@ -28,25 +29,22 @@ function makeBox(event) {
         && yCoord.value >= 0){
         const element = document.createElement("div");
         element.classList.add("box");
-        // element.style.top = '100px';
-        // element.style.left = '200px';
         element.style.top = yCoord.value + "px";
         element.style.left = xCoord.value + "px";
         boxContainer.appendChild(element);
-        // console.log(yCoord.value + " px");
-        // console.log(yform)
-        // console.log(xCoord.value)
-        // console.log(dropDownSelect);
-        element.style.backgroundColor = dropDownSelect.options[dropDownSelect.selectedIndex].value;
-        // console.log(dropDownSelect.options[dropDownSelect.selectedIndex].value);
 
-        // element.
+        //Drop Down Color Selector:
+        // element.style.backgroundColor = dropDownSelect.options[dropDownSelect.selectedIndex].value;
+
+        console.log(colorInputSelect.value);
+        element.style.backgroundColor = colorInputSelect.value;
     } else {
-        alert("COORDINATES OUT OF BOUNDS")
+        alert("COORDINATES OUT OF BOUNDS");
     }
 }
 
-button.addEventListener('click', makeBox)
+button.addEventListener('click', makeBox);
+
 
 
 
