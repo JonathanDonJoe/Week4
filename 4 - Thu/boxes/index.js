@@ -16,6 +16,7 @@ const boxes = document.querySelectorAll('.box');
 const button = document.querySelector('.button');
 const xCoord = document.getElementById("xaxis");
 const yCoord = document.getElementById("yaxis");
+const dropDownSelect = document.getElementById("box-color")
 
 // console.log(boxContainer.style)
 
@@ -35,7 +36,11 @@ function makeBox(event) {
         // console.log(yCoord.value + " px");
         // console.log(yform)
         // console.log(xCoord.value)
-        // console.log(yCoord.value)
+        // console.log(dropDownSelect);
+        element.style.backgroundColor = dropDownSelect.options[dropDownSelect.selectedIndex].value;
+        // console.log(dropDownSelect.options[dropDownSelect.selectedIndex].value);
+
+        // element.
     } else {
         alert("COORDINATES OUT OF BOUNDS")
     }
